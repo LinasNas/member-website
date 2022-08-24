@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{% block title %} Confirm your Public Key {% endblock %}</h1>
+
+<!-- <h4>Upload the <i>signed</i> version of the file <i>random_challenge.txt</i> below </h4>
+<h4>(If it's signed with default functions, the signed file should be called <i>random_challenge.txt.edsig</i>)</h4> -->
+<p><b>Upload the <i>signed</i> version of the file <i>random_challenge.txt</i> below</b></p>
+<p>(If it's signed with default functions, the signed file should be called <i>random_challenge.txt.edsig</i>)</p>
+
+<form method=post enctype=multipart/form-data>
+  <input type=file name=file>
+  <input type=submit value=Upload>
+</form>
+
+{% endblock %}

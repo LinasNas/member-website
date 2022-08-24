@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} </title>
+    <style>
+        nav a {
+            color: #4164d6;
+            font-size: 2.5em;
+            margin-left: 0px;
+            text-decoration: none;
+            padding-right: 25px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}"> Mainsail </a>
+        <a href="{{ url_for('register') }}"> Register </a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>
