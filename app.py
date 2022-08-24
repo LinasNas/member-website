@@ -21,7 +21,7 @@ mail = Mail(app)
 
 #UPLOAD BUTTON
 from werkzeug.utils import secure_filename
-UPLOAD_FOLDER = '/Users/linasnasvytis/Desktop/Mainsail/Flask/github/member-website/uploads'
+UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'edsig'}
 #Max allowed size: 1MB
@@ -127,24 +127,17 @@ def confirm():
 
 from flask import send_from_directory
 
-# @app.route('/uploads/<name>')
-# def download_file(name):
-#     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+@app.route('/uploads/<name>')
+def download_file(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
-# app.add_url_rule(
-#     "/uploads/<name>", endpoint="download_file", build_only=True
-# )
-
-
-# @app.route('/upload-image', methods=('GET', 'POST'))
-# def upload_image():
-#     return render_template("upload_image.html")
-
+app.add_url_rule(
+    "/uploads/<name>", endpoint="download_file", build_only=True
+)
 
 @app.route('/success/')
 def success():
     return render_template('success.html')
-
 
 @app.route('/check_email/')
 def check_email():
