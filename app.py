@@ -21,7 +21,7 @@ mail = Mail(app)
 
 #UPLOAD BUTTON
 from werkzeug.utils import secure_filename
-UPLOAD_FOLDER = '/uploads'
+UPLOAD_FOLDER = '/Users/linasnasvytis/Desktop/Mainsail/Flask/github/member-website/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'edsig'}
 #Max allowed size: 1MB
@@ -57,7 +57,7 @@ def register():
         #             '<p>Congratulations! You have sent a test email with '
         #             '<b>Twilio SendGrid</b>!</p>')
         msg.html = ('<p>To confirm your registration, sign the attached document with your private key.</p>'
-        '<p>Then follow the instructions on the registration page to upload the signed version of the document.</p>')
+        '<p>Then follow the instructions on the registration page to upload the signed version of the document.</p>'
         '<p>(If you are using the default signing procedure, the name of the signed file should be <i>random_challenge.txt.edsig</i>).</p>')
 
         #create an attachment
@@ -117,7 +117,9 @@ def confirm():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            uploads_path = os.path.join(os.getcwd(), "uploads")
+            file.save(os.path.join(uploads_path, filename))
             #return redirect(url_for('download_file', name=filename))
             return redirect(url_for('success'))
 
@@ -125,13 +127,13 @@ def confirm():
 
 from flask import send_from_directory
 
-@app.route('/uploads/<name>')
-def download_file(name):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+# @app.route('/uploads/<name>')
+# def download_file(name):
+#     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
-app.add_url_rule(
-    "/uploads/<name>", endpoint="download_file", build_only=True
-)
+# app.add_url_rule(
+#     "/uploads/<name>", endpoint="download_file", build_only=True
+# )
 
 
 # @app.route('/upload-image', methods=('GET', 'POST'))
