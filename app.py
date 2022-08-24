@@ -56,9 +56,9 @@ def register():
         # msg.html = ('<h1>Twilio SendGrid Test Email</h1>'
         #             '<p>Congratulations! You have sent a test email with '
         #             '<b>Twilio SendGrid</b>!</p>')
-        msg.html = ('<p>To confirm your registration, sign the following string with your private key:</p>'
-        '<p><b> abcdef </b></p>'
-        '<p>Once you signed it, follow the instructions on the registration page to paste your signature.</p>')
+        msg.html = ('<p>To confirm your registration, sign the attached document with your private key.</p>'
+        '<p>Then follow the instructions on the registration page to upload the signed version of the document.</p>')
+        '<p>(If you are using the default signing procedure, the name of the signed file should be <i>random_challenge.txt.edsig</i>).</p>')
 
         #create an attachment
         with open('random_challenge.txt', 'w') as f:
